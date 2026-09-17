@@ -17,12 +17,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('mahasiswa', MahasiswaController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])
+        ->middleware('role:admin')
         ->name('profile.edit');
 
     Route::patch('/profile', [ProfileController::class, 'update'])
+        ->middleware('role:admin')
         ->name('profile.update');
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->middleware('role:admin')
         ->name('profile.destroy');
 });
 
